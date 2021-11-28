@@ -1,22 +1,29 @@
 import React, {useState, useEffect} from "react"
 import styled, {keyframes, ThemeProvider} from "styled-components"
-
+import BorderBox from "./BorderBox"
 
 const Father = styled.div`
 display : flex;
 `
+interface boxProp {
+  backColor:string;
+}
 
-const Box = styled.div`
-width : 100px;
-height : 100px;
-background-color : ${props => props.backColor}
-`
+
 
 //Extending component 
 //#.1 Inhertance
+
+const Box = styled.div<boxProp>`
+width : 100px;
+height : 100px;
+background-color : ${props => props.backColor};
+`
+
 const Circle = styled(Box)`
 border-radius : 50px;
 `
+
 //#.2 Change Tag
 const Btn = styled.button`
 color : white;
@@ -125,6 +132,7 @@ const lightTheme = {
   backgroundColor: "whitesmoke",
 };
 
+//#.7 Optional prop
 
 function App() {
   const [mode, setMode] = useState(lightTheme);
@@ -171,6 +179,13 @@ function App() {
           </Space>
         </VirtualApp>
       </ThemeProvider>
+      <p>- Optional prop(TS)</p>
+      <Father>
+        <BorderBox />
+        <BorderBox bgColor="red" />
+        <BorderBox bgColor="red" bdWidth={15} bdColor="orange" />
+        <BorderBox bgColor="purple" bdWidth={25} bdColor="blue" />
+      </Father>
     </>
   )
 }
