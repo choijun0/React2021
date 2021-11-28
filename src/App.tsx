@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react"
-import styled, {keyframes, ThemeProvider} from "styled-components"
+import styled, {keyframes, ThemeProvider, ModeTheme} from "styled-components"
 import BorderBox from "./BorderBox"
+import ProtectedForm from "./ProtectedForm"
+import {darkTheme, lightTheme} from "./theme"
 
 const Father = styled.div`
 display : flex;
@@ -122,21 +124,12 @@ const Toggle = styled.button`
 background-color : silver;
 color : black;
 `
-//Write CSS key,value as js object
-const darkTheme = {
-  textColor: "whitesmoke",
-  backgroundColor: "#111",
-};
-const lightTheme = {
-  textColor: "#111",
-  backgroundColor: "whitesmoke",
-};
 
 //#.7 Optional prop
 
 function App() {
-  const [mode, setMode] = useState(lightTheme);
-  const [toggle, setToggle] = useState(false);
+  const [mode, setMode] = useState<ModeTheme>(lightTheme);
+  const [toggle, setToggle] = useState<boolean>(false);
   useEffect(()=> {
     if(toggle){
       setMode(darkTheme)
@@ -186,6 +179,8 @@ function App() {
         <BorderBox bgColor="red" bdWidth={15} bdColor="orange" />
         <BorderBox bgColor="purple" bdWidth={25} bdColor="blue" />
       </Father>
+      <p>- State management(TS)</p>
+      <ProtectedForm />
     </>
   )
 }
